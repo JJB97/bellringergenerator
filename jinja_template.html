@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                touch-action: none;
+            } 
+            canvas {
+                display: block;
+                touch-action: none;
+            }
+        </style>
+    </head>
+    <body onload="screenObject = new MainPage();">
+        <canvas id="canvas">다른 브라우저를 이용해주세요</canvas>
+        <script>
+            var problemList = [
+                {% for i in problem_list %}
+                {
+                    'number' : {{ loop.index }},
+                    'problem' : "{{ i['problem_image'] }}",
+                    'answer' : "{{ i['answer'] }}"
+                }{% if loop.index < problem_list|length %}, {% endif %}
+                {% endfor %}
+            ];
+            var value = "{{ key_value }}";
+        </script>
+        <script src="{{ javascriptURL }}"></script>
+    </body>
+</html>
